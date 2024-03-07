@@ -12,7 +12,14 @@ require (
 	github.com/pborman/getopt/v2 v2.1.0
 	github.com/sirupsen/logrus v1.9.3
 	gorm.io/driver/mysql v1.5.1
-	gorm.io/gorm v1.25.2
+	gorm.io/gorm v1.25.7-0.20240204074919-46816ad31dde
+)
+
+require (
+	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
+	github.com/golang-sql/sqlexp v0.1.0 // indirect
+	github.com/microsoft/go-mssqldb v1.6.0 // indirect
+	golang.org/x/text v0.12.0 // indirect
 )
 
 require (
@@ -29,9 +36,10 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/cast v1.5.1 // indirect
-	github.com/stretchr/testify v1.8.0 // indirect
-	golang.org/x/crypto v0.11.0 // indirect
-	golang.org/x/sys v0.10.0 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
+	golang.org/x/crypto v0.12.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gorm.io/driver/sqlserver v1.5.3
 )

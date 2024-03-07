@@ -11,6 +11,7 @@ type confOpts struct {
 	Progress progressConf          `conf:"progress"`
 	Filters  map[string]filterConf `conf:"filters"`
 	MySQL    *mysqlConf            `conf:"mysql"`
+	MSSQL    *mssqlConf            `conf:"mssql"`
 }
 
 type progressConf struct {
@@ -28,6 +29,14 @@ type columnFilterConf struct {
 }
 
 type mysqlConf struct {
+	Host     string `conf:"host" conf_extraopts:"required"`
+	Port     int    `conf:"port" conf_extraopts:"required"`
+	DB       string `conf:"db" conf_extraopts:"required"`
+	User     string `conf:"user" conf_extraopts:"required"`
+	Password string `conf:"password" conf_extraopts:"required"`
+}
+
+type mssqlConf struct {
 	Host     string `conf:"host" conf_extraopts:"required"`
 	Port     int    `conf:"port" conf_extraopts:"required"`
 	DB       string `conf:"db" conf_extraopts:"required"`

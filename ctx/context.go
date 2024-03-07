@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/nixys/nxs-data-anonymizer/ds/mssql"
 	"github.com/nixys/nxs-data-anonymizer/ds/mysql"
 	"github.com/nixys/nxs-data-anonymizer/misc"
 	"github.com/nixys/nxs-data-anonymizer/modules/filters/relfilter"
@@ -28,6 +29,7 @@ type DBCtx struct {
 	Cleanup bool
 	Type    DBType
 	MySQL   *mysql.MySQL
+	MSSQL   *mssql.MSSQL
 }
 
 type DBType string
@@ -35,6 +37,7 @@ type DBType string
 const (
 	DBTypeMySQL DBType = "mysql"
 	DBTypePgSQL DBType = "pgsql"
+	DBTypeMSSQL DBType = "mssql"
 )
 
 type LogFormat string
@@ -116,6 +119,21 @@ func AppCtxInit() (any, error) {
 			return nil, err
 		}
 		c.DB.MySQL = &m
+	} else if conf.MSSQL != nil {
+		m, err := mssql.Connect(mssql.Settings{
+			Host:     conf.MSSQL.Host,
+			Port:     conf.MSSQL.Port,
+			Database: conf.MSSQL.DB,
+			User:     conf.MSSQL.User,
+			Password: conf.MSSQL.Password,
+		})
+		if err != nil {
+			c.Log.WithFields(logrus.Fields{
+				"details": err,
+			}).Errorf("ctx init")
+			return nil, err
+		}
+		c.DB.MSSQL = &m
 	} else {
 		if args.Cleanup == true {
 			c.Log.WithFields(logrus.Fields{

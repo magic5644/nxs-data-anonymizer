@@ -74,15 +74,16 @@ func ArgsRead() (Args, error) {
 		[]string{
 			string(DBTypeMySQL),
 			string(DBTypePgSQL),
+			string(DBTypeMSSQL),
 		},
 		"",
-		fmt.Sprintf("Database type you need to operate. Values `%s` or `%s` are available", DBTypePgSQL, DBTypeMySQL),
+		fmt.Sprintf("Database type you need to operate. Values `%s`, `%s` or `%s` are available", DBTypePgSQL, DBTypeMySQL, DBTypeMSSQL),
 	)
 
 	cleanup := args.BoolLong(
 		"cleanup",
 		'C',
-		"Clean up destination database (experimental). Available only for MySQL")
+		"Clean up destination database (experimental). Available only for MySQL and MSSQL")
 
 	args.Parse(os.Args)
 
@@ -129,7 +130,7 @@ func argsHelp(args *getopt.Set) {
 	
 Additional description
 
-  Tool for anonymizing PostgreSQL and MySQL databases' dump
+  Tool for anonymizing PostgreSQL, MSSQL and MySQL databases' dump
 `
 
 	args.PrintUsage(os.Stdout)
